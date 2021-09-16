@@ -5,7 +5,7 @@ The very first variant will be an object oriented fractal tree. Inside the code 
 
 ![plot](https://github.com/Tanzebruh/TreeVariants/blob/main/Object%20Oriented%20Tree/Mutated%20Tree%20Pictures/SolarPanels.png)
 
-The nature of this variant of fractal tree allows it to be very easily distorted and pop out at the viewer.
+The nature of object oriented fractal trees allows it to be very easily distorted and pop out at the viewer.
 
 
 
