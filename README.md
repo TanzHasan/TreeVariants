@@ -1,7 +1,7 @@
 # TreeVariants
 This is my first JavaScript project that will feature variants of fractal trees.
 ## Object Oriented Fractal Trees
-The very first variant will be an object oriented fractal tree. Inside the code for the treenode object, is commented out alternate code which results in mutated fractal trees. Pictures of the results are in a folder. 
+The very first variant will be an object oriented fractal tree. Inside the code for the treenode object, is commented out alternate code which results in mutated fractal trees. Pictures of the results are in a folder, a variant resembling solar panels is displayed below. 
 
 ![plot](https://github.com/Tanzebruh/TreeVariants/blob/main/Object%20Oriented%20Tree/Mutated%20Tree%20Pictures/SolarPanels.png)
 
