@@ -5,5 +5,7 @@ The very first variant will be an object oriented fractal tree. Inside the code 
 
 The nature of this variant of fractal tree allows it to be very easily distorted and pop out at the viewer.
 
+![plot](./Object Oriented Tree/Mutated Tree Pictures/SolarPanels.png)
+
 ### Resources
 The code uses p5.js
