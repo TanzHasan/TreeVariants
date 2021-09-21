@@ -1,16 +1,34 @@
 var canv;
 var changeA = Math.PI*2/3;
-var col = 'red';
-var changeC = true; 
+var changeC = true;
+var changeP = true;
+var red;
+var green ;
+var blue;
+var col;
+
 function windowResized() {
     resizeCanvas(window.innerWidth*7/8, window.innerHeight*7/8);
   }
-  function setup() {
-    canv= createCanvas(window.innerWidth *7/8 ,window.innerHeight*7/8);
-    background(54, 69, 79);
-  }
+
+function setup() {
+  canv= createCanvas(window.innerWidth *7/8 ,window.innerHeight*7/8);
+  background(54, 69, 79);
+  col= color(255,204,0);
+  red = createSlider(0, 255, 255, 1)
+  red.position(0, height*8/10);
+  green = createSlider(0, 255, 204, 1)
+  green.position(0, height*9/10);
+  blue = createSlider(0, 255, 0, 1)
+  blue.position(0, height);
+  
+}
+
   function draw (){
     background(54, 69, 79);
+    if (changeC){
+      changeCol();
+    }
     translate(width/2,height);
     stroke (col);
     var distance = height*1/3;
@@ -18,7 +36,7 @@ function windowResized() {
     line(0, height, 0, -distance);
     translate(0,-distance);
     rotate(Math.PI/2 - changeA);//fixed critical math error
-    recurse (distance*3/5, changeA, 5);
+    recurse (distance*3/5, changeA, 6);
     
   }
 
@@ -39,13 +57,19 @@ function windowResized() {
       pop ();
     }
   }
-function changeAngle(){
-  //implment soon
-}
+
 function changeCol(){
-  //implement next
+  col = color (red.value(), green.value(), blue.value());
 }
 
 function mouseDragged() {
-  changeA += .1;//proof of concept
+  if (changeP){
+    if (mouseX>width/2){
+      changeA += .01;
+    }
+    else{
+      changeA -= .01;
+    }  
+  }
+  //proof of concept
 }
