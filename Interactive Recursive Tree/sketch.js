@@ -14,6 +14,7 @@ function windowResized() {
 function setup() {
   canv= createCanvas(window.innerWidth *7/8 ,window.innerHeight*7/8);
   background(54, 69, 79);
+  frameRate(30);
   col= color(255,204,0);
   red = createSlider(0, 255, 255, 1)
   red.position(0, height*8/10);
@@ -21,11 +22,18 @@ function setup() {
   green.position(0, height*9/10);
   blue = createSlider(0, 255, 0, 1)
   blue.position(0, height);
-  
 }
 
   function draw (){
     background(54, 69, 79);
+    textSize(36);
+    fill('red');
+    text('red', 0, height*8/10-60);
+    fill('green'); 
+    text('green', 0, height*9/10-60);
+    fill('blue'); 
+    text('blue', 0, height-60);
+    
     if (changeC){
       changeCol();
     }
@@ -36,13 +44,12 @@ function setup() {
     line(0, height, 0, -distance);
     translate(0,-distance);
     rotate(Math.PI/2 - changeA);//fixed critical math error
-    recurse (distance*3/5, changeA, 6);
-    
+    recurse (distance*3/5, changeA, 6);    
   }
 
   function recurse(distance, angle, iterations){
     if (iterations >0){
-      stroke (col);
+      stroke (color((red.value()+iterations*5*Math.random())%255,(green.value()+iterations*5*Math.random())%255,(blue.value()+iterations*5*Math.random())%255));
       push();
       var change = createVector(-distance*Math.cos(angle+changeA), -distance*Math.sin(angle+changeA));
       line (0,0,change.x, change.y);
