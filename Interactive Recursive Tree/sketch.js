@@ -2,6 +2,7 @@ var canv;
 var changeA = Math.PI*2/3;
 var changeC = true;
 var changeP = true;
+var flickR = false;
 var red;
 var green ;
 var blue;
@@ -22,6 +23,15 @@ function setup() {
   green.position(0, height*9/10);
   blue = createSlider(0, 255, 0, 1)
   blue.position(0, height);
+  
+  button = createButton('Flicker');
+  button.position(0, height*7/10);
+  button.size(width/20,height/20);
+  button.style("font-size", "width/20");
+  button.style("background", "rgb(54, 69, 79)");
+  button.style("color", "#fffaf0")
+  button.mousePressed(flick);
+
 }
 
   function draw (){
@@ -40,27 +50,33 @@ function setup() {
     translate(width/2,height);
     stroke (col);
     var distance = height*1/3;
-    strokeWeight(3);
     line(0, height, 0, -distance);
     translate(0,-distance);
     rotate(Math.PI/2 - changeA);//fixed critical math error
-    recurse (distance*3/5, changeA, 6);    
+    recurse (distance*2/3, changeA, 6, 5);    
   }
 
-  function recurse(distance, angle, iterations){
+  function recurse(distance, angle, iterations, weight){
     if (iterations >0){
-      stroke (color((red.value()+iterations*5*Math.random())%255,(green.value()+iterations*5*Math.random())%255,(blue.value()+iterations*5*Math.random())%255));
+      if (flickR){
+        stroke (color((red.value()+(10-iterations)*5*Math.random())%255,(green.value()+(10-iterations)*5*Math.random())%255,(blue.value()+(10-iterations)*5*Math.random())%255));
+        strokeWeight(iterations * Math.random());
+      }
+      else{
+        stroke (color((red.value()+(8-iterations)*3)%255,(green.value()+(8-iterations)*-3)%255,(blue.value()+(8-iterations)*3)%255));
+        strokeWeight(weight);
+      }
       push();
       var change = createVector(-distance*Math.cos(angle+changeA), -distance*Math.sin(angle+changeA));
       line (0,0,change.x, change.y);
       translate (change.x,change.y);
-      recurse (distance*3/5, angle+changeA, iterations-1);
+      recurse (distance*2/3, angle+changeA, iterations-1, weight-.55);
       pop ();
       push();
       var change = createVector(-distance*Math.cos(angle-changeA), -distance*Math.sin(angle-changeA));     
       line (0,0,change.x, change.y);
       translate (change.x,change.y);
-      recurse (distance*3/5, angle-changeA, iterations-1);
+      recurse (distance*2/3, angle-changeA, iterations-1, weight-.55);
       pop ();
     }
   }
@@ -78,5 +94,12 @@ function mouseDragged() {
       changeA -= .01;
     }  
   }
-  //proof of concept
+}
+function flick (){
+  if (flickR){
+    flickR= false;
+  }
+  else{
+    flickR = true;
+  }
 }
